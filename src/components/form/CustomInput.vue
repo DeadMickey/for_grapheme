@@ -32,12 +32,10 @@ export default {
     backspacePush: false,
   }),
   methods: {
-    onlyNumbers(val) {
-      return val.replace(/^[^\d\s]+$/, "");
-    },
     sendValue(e) {
-      let value = e.target.value;
-      if (this.id === "card-number") {
+      let value;
+      if (this.id === "card-number" && !this.backspacePush) {
+        value = e.target.value.replace(/[^\d^ ]/g, "");
         switch (value.length) {
           case 4:
             value += " ";
@@ -54,6 +52,9 @@ export default {
           default:
             break;
         }
+        e.target.value = value;
+      } else {
+        value = e.target.value;
       }
       if (this.id === "card-term" && !this.backspacePush) {
         if (value.length == 2) {

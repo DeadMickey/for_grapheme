@@ -32,7 +32,7 @@ export default {
   name: "FormContainer",
   components: { FormStepper, Form },
   data: () => ({
-    currentStep: 1,
+    currentStep: 0,
     emptyFileds: [],
     someData: [
       [
@@ -98,6 +98,7 @@ export default {
 
       if (this.checkFormFieldsLegth(formNumber) == formValues.length) {
         ++this.currentStep;
+        console.log(formInfo.exportValues);
       }
     },
     backStep() {
